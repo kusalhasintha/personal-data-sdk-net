@@ -11,6 +11,9 @@ namespace KenticoCloud.PersonalData.Tests
         private readonly string EXISTING_EMAIL = "kroberts2y@godaddy.com";
         private readonly string EXISTING_UID = "aad50bb1223e4199";
 
+        private readonly string NONEXISTING_EMAIL = "non@existing.test";
+        private readonly string NONEXISTING_UID = "aa123451234eaaaa";
+
         private readonly PersonalDataClient _client;
 
         public PersonalDataClientTests()
@@ -20,21 +23,40 @@ namespace KenticoCloud.PersonalData.Tests
             _client = new PersonalDataClient("https://engage-personal-data-api-develop.azurewebsites.net/", apiKey, projectId);
         }
 
+
         [Test]
         public async Task GetByEmailAsync()
         {
-            var contactDataResponse = await _client.GetByEmailAsync(EXISTING_EMAIL);
-            AssertData(contactDataResponse);
+            var response = await _client.GetByEmailAsync(EXISTING_EMAIL);
+            AssertContactDataResponse(response);
         }
+
 
         [Test]
         public async Task GetByUidAsync()
         {
-            var contactDataResponse = await _client.GetByUidAsync(EXISTING_UID);
-            AssertData(contactDataResponse);
+            var response = await _client.GetByUidAsync(EXISTING_UID);
+            AssertContactDataResponse(response);
         }
 
-        private void AssertData(ContactDataResponse contactDataResponse)
+
+        [Test]
+        public void DeleteByUidAsync()
+        {
+            // Responses about the user creation might get to Engage after a delete signal. That's why we consider such request valid.
+            Assert.DoesNotThrowAsync(() => _client.DeleteByUidAsync(NONEXISTING_UID));
+        }
+
+
+        [Test]
+        public void DeleteByEmailAsync()
+        {
+            // Email does not exists so we can't determine what users we should delete.
+            Assert.ThrowsAsync<PersonalDataException>(() => _client.DeleteByUidAsync(NONEXISTING_EMAIL), "Not found");
+        }
+
+
+        private void AssertContactDataResponse(ContactDataResponse contactDataResponse)
         {
             Assert.NotNull(contactDataResponse);
 

@@ -8,7 +8,7 @@ namespace KenticoCloud.PersonalData
     /// <summary>
     /// Represents an error response from the API.
     /// </summary>
-    internal class PersonalDataException : Exception
+    public class PersonalDataException : Exception
     {
         /// <summary>
         /// HTTP status code.

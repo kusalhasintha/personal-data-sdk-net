@@ -64,7 +64,8 @@ namespace KenticoCloud.PersonalData
         /// <summary>
         /// Gets all information about visitors (specified by <paramref name="email"/>) stored in Kentico Cloud.
         /// </summary>
-        /// <param name="email">User email.</param>
+        /// <param name="email">User email.</param>        
+        /// <throws><see cref="PersonalDataException"/>If response is not succesfull.</throws>
         public async Task<ContactDataResponse> GetByEmailAsync(string email)
         {
             if (string.IsNullOrEmpty(email))
@@ -78,16 +79,67 @@ namespace KenticoCloud.PersonalData
         }
 
 
+        /// <summary>
+        /// Deletes all personal data stored in Kentico Cloud belonging to visitors with the specified <paramref name="uid"/>.
+        /// </summary>
+        /// <param name="uid">User ID.</param>
+        /// <throws><see cref="PersonalDataException"/>If response is not successful.</throws>
+        public async Task DeleteByUidAsync(string uid)
+        {
+            if (string.IsNullOrEmpty(uid))
+            {
+                throw new ArgumentException("Uid must be set.", nameof(uid));
+            }
+            using (var response = await _httpClient.DeleteAsync($"{_personalDataRoutePrefix}/uid/{uid}"))
+            {
+                await ExpectSuccessfulResponse(response);
+            }
+        }
+
+
+        /// <summary>
+        /// Deletes all personal data stored in Kentico Cloud belonging to visitors with the specified <paramref name="email"/>.
+        /// </summary>
+        /// <param name="email">User email.</param>
+        /// <throws><see cref="PersonalDataException"/>If response is not successful.</throws>
+        public async Task DeleteByEmailAsync(string email)
+        {
+            if (string.IsNullOrEmpty(email))
+            {
+                throw new ArgumentException("Email must be set.", nameof(email));
+            }
+            using (var response = await _httpClient.DeleteAsync($"{_personalDataRoutePrefix}/email/{email}"))
+            {
+                await ExpectSuccessfulResponse(response);
+            }
+        }
+
+
+        /// <summary>
+        /// Deserializes json content of the <paramref name="response"/> into an object of type <typeparamref name="T"/>.
+        /// </summary>
+        /// <throws><see cref="PersonalDataException"/>If response is not successful.</throws>
         private async Task<T> DeserializeContent<T>(HttpResponseMessage response)
+        {
+            string responseBody = await ExpectSuccessfulResponse(response);
+            return JsonConvert.DeserializeObject<T>(responseBody);
+        }
+
+
+        /// <summary>
+        /// Retrieves body of <see cref="HttpResponseMessage"/>.
+        /// </summary>
+        /// <throws><see cref="PersonalDataException"/>If response is not successful.</throws>
+        private static async Task<string> ExpectSuccessfulResponse(HttpResponseMessage response)
         {
             var responseBody = await response.Content.ReadAsStringAsync();
 
-            if (response.IsSuccessStatusCode)
+            if (!response.IsSuccessStatusCode)
             {
-                return JsonConvert.DeserializeObject<T>(responseBody);
+                throw new PersonalDataException(response.StatusCode, responseBody);
             }
 
-            throw new PersonalDataException(response.StatusCode, responseBody);
+            return responseBody;
         }
     }
 }
