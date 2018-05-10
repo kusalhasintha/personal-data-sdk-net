@@ -1,9 +1,9 @@
-﻿using KenticoCloud.PersonalData.Models;
-using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
+using KenticoCloud.PersonalData.Models;
 
 namespace KenticoCloud.PersonalData
 {
@@ -45,10 +45,10 @@ namespace KenticoCloud.PersonalData
 
 
         /// <summary>
-        /// Gets all information about the visitor (specified by <paramref name="uid"/>) stored in Kentico Cloud.
+        /// Gets all information about visitors (specified by <paramref name="uid"/>) stored in Kentico Cloud.
         /// </summary>
         /// <param name="uid">User ID.</param>
-        public async Task<ContactDataResponse> GetVisitorDataByUidAsync(string uid)
+        public async Task<ContactDataResponse> GetByUidAsync(string uid)
         {
             if (string.IsNullOrEmpty(uid))
             {
@@ -62,10 +62,10 @@ namespace KenticoCloud.PersonalData
 
 
         /// <summary>
-        ///Gets all information about the visitor (specified by <paramref name="email"/>) stored in Kentico Cloud.
+        /// Gets all information about visitors (specified by <paramref name="email"/>) stored in Kentico Cloud.
         /// </summary>
         /// <param name="email">User email.</param>
-        public async Task<ContactDataResponse> GetVisitorDataByEmailAsync(string email)
+        public async Task<ContactDataResponse> GetByEmailAsync(string email)
         {
             if (string.IsNullOrEmpty(email))
             {

@@ -1,0 +1,38 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <Description>Kentico Cloud Personal Data SDK tests validate that the client is compatible with the current version of Kentico Cloud Personal Data API.</Description>
+    <Copyright>(c) 2018 Kentico Software. All rights reserved.</Copyright>
+    <AssemblyTitle>Kentico Cloud Personal Data SDK tests</AssemblyTitle>
+    <Authors>Kentico Software</Authors>
+    <TargetFramework>netcoreapp1.0</TargetFramework>
+    <AssemblyName>KenticoCloud.PersonalData.Tests</AssemblyName>
+    <PackageId>KenticoCloud.PersonalData.Tests</PackageId>
+    <GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
+    <PackageLicenseUrl>https://github.com/Kentico/personal-data-sdk-net/blob/master/LICENSE</PackageLicenseUrl>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/Kentico/personal-data-sdk-net.git</RepositoryUrl>
+    <RuntimeFrameworkVersion>1.0.4</RuntimeFrameworkVersion>
+    <NetStandardImplicitPackageVersion>1.6.1</NetStandardImplicitPackageVersion>
+    <GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
+    <GenerateAssemblyDescriptionAttribute>false</GenerateAssemblyDescriptionAttribute>
+    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+    <GenerateAssemblyCopyrightAttribute>false</GenerateAssemblyCopyrightAttribute>
+    <GenerateAssemblyVersionAttribute>false</GenerateAssemblyVersionAttribute>
+    <GenerateAssemblyFileVersionAttribute>false</GenerateAssemblyFileVersionAttribute>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\KenticoCloud.PersonalData\KenticoCloud.PersonalData.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.0.0" />
+    <PackageReference Include="NUnit" Version="3.7.1" />
+    <PackageReference Include="NSubstitute" Version="3.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="1.1.1" />
+    <PackageReference Include="NUnit3TestAdapter" Version="3.8.0" />
+  </ItemGroup>
+  
+</Project>

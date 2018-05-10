@@ -102,13 +102,13 @@ namespace KenticoCloud.PersonalData.Models
         /// User's actions done during the session.
         /// </summary>
         [JsonProperty("actions")]
-        public List<UserAction> Actions { get; set; }
+        public UserAction[] Actions { get; set; }
 
         /// <summary>
         /// User's custom activities done during the session.
         /// </summary>
         [JsonProperty("customActivities")]
-        public List<CustomActivity> CustomActivities { get; set; }
+        public CustomActivity[] CustomActivities { get; set; }
 
         /// <summary>
         /// Session's tracking IP.

@@ -12,12 +12,12 @@ namespace KenticoCloud.PersonalData.Models
         /// Collection of data about a contact.
         /// </summary>
         [JsonProperty("contactData")]
-        public IEnumerable<ContactData> ContactData { get; }
+        public ContactData[] ContactData { get; set; }
 
         /// <summary>
         /// All ids which were used to track a contact.
         /// </summary>
         [JsonProperty("trackedIds")]
-        public IEnumerable<string> TrackedIds { get; }
+        public string[] TrackedIds { get; set; }
     }
 }
