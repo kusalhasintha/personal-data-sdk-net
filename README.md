@@ -1,7 +1,9 @@
 # Kentico Cloud Personal Data .NET SDK
 
 Will be deployed to AppVoyer soon.
+
 Nuget package will be released soon.
+
 [![Forums](https://img.shields.io/badge/chat-on%20forums-orange.svg)](https://forums.kenticocloud.com)
 
 ## Summary
