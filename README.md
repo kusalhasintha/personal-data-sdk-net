@@ -1,14 +1,8 @@
 # Kentico Cloud Personal Data .NET SDK
 
-[![Build status] TODO after AppVeyor] [![Forums](https://img.shields.io/badge/chat-on%20forums-orange.svg)](https://forums.kenticocloud.com)
-
-
-| Package | Version |
-| :-- | :--: |
-| KenticoCloud.PersonalData | [![NuGet] TODO] |
-| KenticoCloud.PersonalData.AspNetCore | [![NuGet] TODO] |
-| KenticoCloud.PersonalData.MVC | [![NuGet] TODO] |
-
+Will be deployed to AppVoyer soon.
+Nuget package will be released soon.
+[![Forums](https://img.shields.io/badge/chat-on%20forums-orange.svg)](https://forums.kenticocloud.com)
 
 ## Summary
 
