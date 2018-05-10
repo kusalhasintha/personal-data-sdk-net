@@ -8,7 +8,7 @@ Nuget package will be released soon.
 
 ## Summary
 
-The Kentico Cloud Personal Data .NET SDK is a library used for retrieving or deleting data about your tracked visitors. You can use the SDK in the form of a NuGet package (TODO link).
+The Kentico Cloud Personal Data .NET SDK is a library used for retrieving or deleting data about your tracked visitors. You can use the SDK in the form of a NuGet package (will be released soon).
 
 ## Prerequisites
 
