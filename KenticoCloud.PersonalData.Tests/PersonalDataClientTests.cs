@@ -52,7 +52,10 @@ namespace KenticoCloud.PersonalData.Tests
         public void DeleteByEmailAsync()
         {
             // Email does not exists so we can't determine what users we should delete.
-            Assert.ThrowsAsync<PersonalDataException>(() => _client.DeleteByUidAsync(NONEXISTING_EMAIL), "Not found");
+            var exception = Assert.ThrowsAsync<PersonalDataException>(async () => await _client.DeleteByEmailAsync(NONEXISTING_EMAIL));
+
+            Assert.AreEqual(404, exception.StatusCode);
+            Assert.AreEqual("Not found", exception.Message);
         }
 
 
