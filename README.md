@@ -1,6 +1,6 @@
 # Kentico Cloud Personal Data .NET SDK
 
-Will be deployed to AppVoyer soon.
+[![Build status](https://ci.appveyor.com/api/projects/status/as11gvayj6vm087l?svg=true)](https://ci.appveyor.com/project/kentico/personal-data-sdk-net)
 
 Nuget package will be released soon.
 
