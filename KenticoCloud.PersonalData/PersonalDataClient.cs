@@ -13,13 +13,16 @@ namespace KenticoCloud.PersonalData
     public class PersonalDataClient
     {
         private readonly HttpClient _httpClient;
-
         private readonly string _personalDataRoutePrefix;
+
+        private string GetUidRoute(string uid) => $"{_personalDataRoutePrefix}/uid/{uid}";
+        private string GetEmailRoute(string email) => $"{_personalDataRoutePrefix}/email/{email}";
+
 
         /// <summary>
         /// Client constructor for production API.
         /// </summary>
-        /// <param name="accessToken">Your personalization API key. It can be found on Kentico Cloud Developer page.</param>
+        /// <param name="accessToken">Your Personal Data API key. It can be found on Kentico Cloud API Keys page.</param>
         /// <param name="projectId">Your project identifier.</param>
         public PersonalDataClient(string accessToken, Guid projectId)
             : this("https://personal-data-api.kenticocloud.com", accessToken, projectId)
@@ -31,7 +34,7 @@ namespace KenticoCloud.PersonalData
         /// Client constructor.
         /// </summary>
         /// <param name="endpointUri">Root url of API endpoint.</param>
-        /// <param name="accessToken">Your personalization API key. It can be found on Kentico Cloud Developer page.</param>
+        /// <param name="accessToken">Your Personal Data API key. It can be found on Kentico Cloud API Keys page.</param>
         /// <param name="projectId">Your project identifier.</param>
         public PersonalDataClient(string endpointUri, string accessToken, Guid projectId)
         {
@@ -48,13 +51,15 @@ namespace KenticoCloud.PersonalData
         /// Gets all information about visitors (specified by <paramref name="uid"/>) stored in Kentico Cloud.
         /// </summary>
         /// <param name="uid">User ID.</param>
+        /// <throws><see cref="ArgumentException"/>If <paramref name="uid"/> is <c>null</c></throws>
+        /// <throws><see cref="PersonalDataException"/>If response is not succesfull.</throws>
         public async Task<ContactDataResponse> GetByUidAsync(string uid)
         {
             if (string.IsNullOrEmpty(uid))
             {
                 throw new ArgumentException("Uid must be set.", nameof(uid));
             }
-            using (var response = await _httpClient.GetAsync($"{_personalDataRoutePrefix}/uid/{uid}"))
+            using (var response = await _httpClient.GetAsync(GetUidRoute(uid)))
             {
                 return await DeserializeContent<ContactDataResponse>(response);
             }
@@ -64,7 +69,8 @@ namespace KenticoCloud.PersonalData
         /// <summary>
         /// Gets all information about visitors (specified by <paramref name="email"/>) stored in Kentico Cloud.
         /// </summary>
-        /// <param name="email">User email.</param>        
+        /// <param name="email">User email.</param>
+        /// <throws><see cref="ArgumentException"/>If <paramref name="email"/> is <c>null</c></throws>
         /// <throws><see cref="PersonalDataException"/>If response is not succesfull.</throws>
         public async Task<ContactDataResponse> GetByEmailAsync(string email)
         {
@@ -72,7 +78,7 @@ namespace KenticoCloud.PersonalData
             {
                 throw new ArgumentException("Email must be set.", nameof(email));
             }
-            using (var response = await _httpClient.GetAsync($"{_personalDataRoutePrefix}/email/{email}"))
+            using (var response = await _httpClient.GetAsync(GetEmailRoute(email)))
             {
                 return await DeserializeContent<ContactDataResponse>(response);
             }
@@ -83,6 +89,7 @@ namespace KenticoCloud.PersonalData
         /// Deletes all personal data stored in Kentico Cloud belonging to visitors with the specified <paramref name="uid"/>.
         /// </summary>
         /// <param name="uid">User ID.</param>
+        /// <throws><see cref="ArgumentException"/>If <paramref name="uid"/> is <c>null</c></throws>
         /// <throws><see cref="PersonalDataException"/>If response is not successful.</throws>
         public async Task DeleteByUidAsync(string uid)
         {
@@ -90,7 +97,7 @@ namespace KenticoCloud.PersonalData
             {
                 throw new ArgumentException("Uid must be set.", nameof(uid));
             }
-            using (var response = await _httpClient.DeleteAsync($"{_personalDataRoutePrefix}/uid/{uid}"))
+            using (var response = await _httpClient.DeleteAsync(GetUidRoute(uid)))
             {
                 await ExpectSuccessfulResponse(response);
             }
@@ -101,6 +108,7 @@ namespace KenticoCloud.PersonalData
         /// Deletes all personal data stored in Kentico Cloud belonging to visitors with the specified <paramref name="email"/>.
         /// </summary>
         /// <param name="email">User email.</param>
+        /// <throws><see cref="ArgumentException"/>If <paramref name="email"/> is <c>null</c></throws>
         /// <throws><see cref="PersonalDataException"/>If response is not successful.</throws>
         public async Task DeleteByEmailAsync(string email)
         {
@@ -108,7 +116,7 @@ namespace KenticoCloud.PersonalData
             {
                 throw new ArgumentException("Email must be set.", nameof(email));
             }
-            using (var response = await _httpClient.DeleteAsync($"{_personalDataRoutePrefix}/email/{email}"))
+            using (var response = await _httpClient.DeleteAsync(GetEmailRoute(email)))
             {
                 await ExpectSuccessfulResponse(response);
             }

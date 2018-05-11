@@ -1,7 +1,8 @@
 ﻿using System;
+using System.Net;
 using System.Threading.Tasks;
-using KenticoCloud.PersonalData.Models;
 using NUnit.Framework;
+using KenticoCloud.PersonalData.Models;
 
 namespace KenticoCloud.PersonalData.Tests
 {
@@ -54,8 +55,8 @@ namespace KenticoCloud.PersonalData.Tests
             // Email does not exists so we can't determine what users we should delete.
             var exception = Assert.ThrowsAsync<PersonalDataException>(async () => await _client.DeleteByEmailAsync(NONEXISTING_EMAIL));
 
-            Assert.AreEqual(404, exception.StatusCode);
-            Assert.AreEqual("Not found", exception.Message);
+            Assert.AreEqual(HttpStatusCode.NotFound, exception.StatusCode);
+            Assert.AreEqual("Requested email was not found", exception.Description);
         }
 
 
