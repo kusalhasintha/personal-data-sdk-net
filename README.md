@@ -1,18 +1,14 @@
 # Kentico Cloud Personal Data .NET SDK
 
-[![Build status] TODO after AppVeyor] [![Forums](https://img.shields.io/badge/chat-on%20forums-orange.svg)](https://forums.kenticocloud.com)
+Will be deployed to AppVoyer soon.
 
+Nuget package will be released soon.
 
-| Package | Version |
-| :-- | :--: |
-| KenticoCloud.PersonalData | [![NuGet] TODO] |
-| KenticoCloud.PersonalData.AspNetCore | [![NuGet] TODO] |
-| KenticoCloud.PersonalData.MVC | [![NuGet] TODO] |
-
+[![Forums](https://img.shields.io/badge/chat-on%20forums-orange.svg)](https://forums.kenticocloud.com)
 
 ## Summary
 
-The Kentico Cloud Personal Data .NET SDK is a library used for retrieving or deleting data about your tracked visitors. You can use the SDK in the form of a NuGet package (TODO link).
+The Kentico Cloud Personal Data .NET SDK is a library used for retrieving or deleting data about your tracked visitors. You can use the SDK in the form of a NuGet package (will be released soon).
 
 ## Prerequisites
 
