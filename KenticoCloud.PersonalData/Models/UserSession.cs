@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 namespace KenticoCloud.PersonalData.Models
 {
     /// <summary>
-    /// Represents a tracked session of the user.
+    /// Represents a tracked session of a user.
     /// </summary>
     public class UserSession
     {
@@ -15,25 +15,25 @@ namespace KenticoCloud.PersonalData.Models
         public Guid Uid { get; set; }
 
         /// <summary>
-        /// Session id.
+        /// Id of the session.
         /// </summary>
         [JsonProperty("sid")]
         public Guid Sid { get; set; }
 
         /// <summary>
-        /// Time when the ssession was established.
+        /// Time when the session was established.
         /// </summary>
         [JsonProperty("created")]
         public DateTimeOffset Created { get; set; }
 
         /// <summary>
-        /// Session's referrer.
+        /// Referrer of the session.
         /// </summary>
         [JsonProperty("referrer")]
         public string Referrer { get; set; }
 
         /// <summary>
-        /// Session's language.
+        /// Language of the session.
         /// </summary>
         [JsonProperty("language")]
         public string Language { get; set; }
@@ -86,13 +86,13 @@ namespace KenticoCloud.PersonalData.Models
         public string OSVersion { get; set; }
 
         /// <summary>
-        /// Session's source application.
+        /// Source application of the session.
         /// </summary>
         [JsonProperty("sourceApp")]
         public string SourceApp { get; set; }
 
         /// <summary>
-        /// Hash optained from the session's IP.
+        /// Hash optained from the session's IP address.
         /// </summary>
         [JsonProperty("ipHash")]
         public Guid IpHash { get; set; }
@@ -110,13 +110,13 @@ namespace KenticoCloud.PersonalData.Models
         public CustomActivity[] CustomActivities { get; set; }
 
         /// <summary>
-        /// Session's tracking IP.
+        /// Tracking IP address of the session.
         /// </summary>
         [JsonProperty("trackingIp")]
         public TrackingIp TrackingIp { get; set; }
 
         /// <summary>
-        /// Session's raw id.
+        /// Raw format of the session's id.
         /// </summary>
         [JsonProperty("rawSid")]
         public string RawSid { get; set; }

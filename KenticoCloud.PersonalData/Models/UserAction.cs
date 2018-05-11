@@ -33,7 +33,7 @@ namespace KenticoCloud.PersonalData.Models
         public DateTimeOffset Created { get; set; }
 
         /// <summary>
-        /// Session id where the action was performed.
+        /// Id of the session in which the action was performed.
         /// </summary>
         [JsonProperty("sid")]
         public Guid Sid { get; set; }
