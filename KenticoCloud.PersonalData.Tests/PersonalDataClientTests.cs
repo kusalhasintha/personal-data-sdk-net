@@ -12,8 +12,8 @@ namespace KenticoCloud.PersonalData.Tests
         private readonly string PROJECT_ID_ENV_VAR = "PROJECT_ID";
         private readonly string PERSONAL_DATA_API_KEY_ENV_VAR = "PERSONAL_DATA_API_KEY";
         
-        private readonly string EXISTING_EMAIL = "jmurray2@bbb.org";
-        private readonly string EXISTING_UID = "03-be21-00e42824e531";
+        private readonly string EXISTING_EMAIL = "80b98683-b57f-44d4-b1cb-38b19a3cb577@email.test";
+        private readonly string EXISTING_UID = "uvleinsupxsz8h7o";
 
         private readonly string NONEXISTING_EMAIL = "non@existing.test";
         private readonly string NONEXISTING_UID = "aa123451234eaaaa";
