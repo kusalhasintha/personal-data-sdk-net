@@ -2,7 +2,6 @@
 using System.Net;
 using System.Threading.Tasks;
 using NUnit.Framework;
-using KenticoCloud.PersonalData.Models;
 
 namespace KenticoCloud.PersonalData.Tests
 {
@@ -34,7 +33,7 @@ namespace KenticoCloud.PersonalData.Tests
         public async Task GetByEmailAsync()
         {
             var response = await _client.GetByEmailAsync(EXISTING_EMAIL);
-            AssertContactDataResponse(response);
+            Assert.That(String.IsNullOrEmpty(response), Is.False);
         }
 
 
@@ -42,7 +41,7 @@ namespace KenticoCloud.PersonalData.Tests
         public async Task GetByUidAsync()
         {
             var response = await _client.GetByUidAsync(EXISTING_UID);
-            AssertContactDataResponse(response);
+            Assert.That(String.IsNullOrEmpty(response), Is.False);
         }
 
 
@@ -62,22 +61,6 @@ namespace KenticoCloud.PersonalData.Tests
 
             Assert.AreEqual(HttpStatusCode.NotFound, exception.StatusCode);
             Assert.AreEqual("Requested email was not found", exception.Description);
-        }
-
-
-        private void AssertContactDataResponse(ContactDataResponse contactDataResponse)
-        {
-            Assert.NotNull(contactDataResponse);
-
-            Assert.NotNull(contactDataResponse.ContactData);
-            Assert.IsNotEmpty(contactDataResponse.ContactData);
-            Assert.AreEqual(EXISTING_EMAIL, contactDataResponse.ContactData[0].Email);
-            Assert.NotNull(contactDataResponse.ContactData[0].SessionRecords);
-            Assert.IsNotEmpty(contactDataResponse.ContactData[0].SessionRecords);
-
-            Assert.NotNull(contactDataResponse.TrackedIds);
-            Assert.IsNotEmpty(contactDataResponse.TrackedIds);
-            Assert.AreEqual(EXISTING_UID, contactDataResponse.TrackedIds[0]);
         }
     }
 }

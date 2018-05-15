@@ -3,7 +3,6 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using KenticoCloud.PersonalData.Models;
 
 namespace KenticoCloud.PersonalData
 {
@@ -53,7 +52,7 @@ namespace KenticoCloud.PersonalData
         /// <param name="uid">User ID.</param>
         /// <throws><see cref="ArgumentException"/>If <paramref name="uid"/> is <c>null</c></throws>
         /// <throws><see cref="PersonalDataException"/>If response is not succesfull.</throws>
-        public async Task<ContactDataResponse> GetByUidAsync(string uid)
+        public async Task<string> GetByUidAsync(string uid)
         {
             if (string.IsNullOrEmpty(uid))
             {
@@ -61,7 +60,7 @@ namespace KenticoCloud.PersonalData
             }
             using (var response = await _httpClient.GetAsync(GetUidRoute(uid)))
             {
-                return await DeserializeContent<ContactDataResponse>(response);
+                return await GetSuccessfulResponseContent(response);
             }
         }
 
@@ -72,7 +71,7 @@ namespace KenticoCloud.PersonalData
         /// <param name="email">User email.</param>
         /// <throws><see cref="ArgumentException"/>If <paramref name="email"/> is <c>null</c></throws>
         /// <throws><see cref="PersonalDataException"/>If response is not succesfull.</throws>
-        public async Task<ContactDataResponse> GetByEmailAsync(string email)
+        public async Task<string> GetByEmailAsync(string email)
         {
             if (string.IsNullOrEmpty(email))
             {
@@ -80,7 +79,7 @@ namespace KenticoCloud.PersonalData
             }
             using (var response = await _httpClient.GetAsync(GetEmailRoute(email)))
             {
-                return await DeserializeContent<ContactDataResponse>(response);
+                return await GetSuccessfulResponseContent(response);
             }
         }
 
@@ -99,7 +98,7 @@ namespace KenticoCloud.PersonalData
             }
             using (var response = await _httpClient.DeleteAsync(GetUidRoute(uid)))
             {
-                await ExpectSuccessfulResponse(response);
+                await GetSuccessfulResponseContent(response);
             }
         }
 
@@ -118,19 +117,8 @@ namespace KenticoCloud.PersonalData
             }
             using (var response = await _httpClient.DeleteAsync(GetEmailRoute(email)))
             {
-                await ExpectSuccessfulResponse(response);
+                await GetSuccessfulResponseContent(response);
             }
-        }
-
-
-        /// <summary>
-        /// Deserializes json content of the <paramref name="response"/> into an object of type <typeparamref name="T"/>.
-        /// </summary>
-        /// <throws><see cref="PersonalDataException"/>If response is not successful.</throws>
-        private async Task<T> DeserializeContent<T>(HttpResponseMessage response)
-        {
-            string responseBody = await ExpectSuccessfulResponse(response);
-            return JsonConvert.DeserializeObject<T>(responseBody);
         }
 
 
@@ -138,7 +126,7 @@ namespace KenticoCloud.PersonalData
         /// Retrieves body of <see cref="HttpResponseMessage"/>.
         /// </summary>
         /// <throws><see cref="PersonalDataException"/>If response is not successful.</throws>
-        private static async Task<string> ExpectSuccessfulResponse(HttpResponseMessage response)
+        private static async Task<string> GetSuccessfulResponseContent(HttpResponseMessage response)
         {
             var responseBody = await response.Content.ReadAsStringAsync();
 
