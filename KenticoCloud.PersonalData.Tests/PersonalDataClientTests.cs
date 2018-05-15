@@ -9,8 +9,11 @@ namespace KenticoCloud.PersonalData.Tests
     [TestFixture]
     public class PersonalDataClientTests
     {
-        private readonly string EXISTING_EMAIL = "kroberts2y@godaddy.com";
-        private readonly string EXISTING_UID = "aad50bb1223e4199";
+        private readonly string PROJECT_ID_ENV_VAR = "PROJECT_ID";
+        private readonly string PERSONAL_DATA_API_KEY_ENV_VAR = "PERSONAL_DATA_API_KEY";
+        
+        private readonly string EXISTING_EMAIL = "jmurray2@bbb.org";
+        private readonly string EXISTING_UID = "03-be21-00e42824e531";
 
         private readonly string NONEXISTING_EMAIL = "non@existing.test";
         private readonly string NONEXISTING_UID = "aa123451234eaaaa";
@@ -19,9 +22,11 @@ namespace KenticoCloud.PersonalData.Tests
 
         public PersonalDataClientTests()
         {
-            var projectId = new Guid("e151a1b5-d69c-0086-cdbd-f453989c537a");
-            var apiKey = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI3MDE1MmMyZTE3NGU0NmQ3YTc3ZTk1ODNkN2I0MDgwYiIsImlhdCI6IjE1MjU5NTM4MzciLCJleHAiOiIxODcxNTUzODM3IiwicHJvamVjdF9pZCI6ImUxNTFhMWI1ZDY5YzAwODZjZGJkZjQ1Mzk4OWM1MzdhIiwidmVyIjoiMS4wLjAiLCJhdWQiOiJwZXJzb25hbC1kYXRhLWFwaS5rZW50aWNvY2xvdWQuY29tIn0.C56WXShLrlF--dZMzJeCFZvA8xOdta6DMYot2ikDMF4";
-            _client = new PersonalDataClient("https://engage-personal-data-api-develop.azurewebsites.net/", apiKey, projectId);
+            var projectIdString = Environment.GetEnvironmentVariable(PROJECT_ID_ENV_VAR);
+            var projectId = new Guid(projectIdString);
+            var apiKey = Environment.GetEnvironmentVariable(PERSONAL_DATA_API_KEY_ENV_VAR);
+
+            _client = new PersonalDataClient(apiKey, projectId);
         }
 
 
