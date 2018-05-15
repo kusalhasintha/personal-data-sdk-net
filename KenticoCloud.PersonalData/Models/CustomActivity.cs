@@ -4,12 +4,12 @@ using Newtonsoft.Json;
 namespace KenticoCloud.PersonalData.Models
 {
     /// <summary>
-    /// Represents a custom activity defined by a user in Kentico cloud.
+    /// Represents a custom activity performed by a visitor in your app.
     /// </summary>
     public class CustomActivity
     {
         /// <summary>
-        /// Id of the contact who performed the activity.
+        /// Id of the visitor who performed the activity.
         /// </summary>
         [JsonProperty("uid")]
         public Guid Uid { get; set; }

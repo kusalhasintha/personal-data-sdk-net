@@ -15,13 +15,13 @@ namespace KenticoCloud.PersonalData.Models
         public string ActionType { get; set; }
 
         /// <summary>
-        /// Page url where the action was performed.
+        /// Url of the page where the action was performed.
         /// </summary>
         [JsonProperty("pageUrl")]
         public string PageUrl { get; set; }
 
         /// <summary>
-        /// Page title where the action was performed.
+        /// Title of the page where the action was performed.
         /// </summary>
         [JsonProperty("pageTitle")]
         public string PageTitle { get; set; }
@@ -39,7 +39,7 @@ namespace KenticoCloud.PersonalData.Models
         public Guid Sid { get; set; }
 
         /// <summary>
-        /// Id of the user who performed the action.
+        /// Id of the visitor who performed the action.
         /// </summary>
         [JsonProperty("uid")]
         public Guid Uid { get; set; }

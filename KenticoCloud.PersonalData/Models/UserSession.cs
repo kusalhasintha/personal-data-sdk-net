@@ -9,7 +9,7 @@ namespace KenticoCloud.PersonalData.Models
     public class UserSession
     {
         /// <summary>
-        /// Id of the user who established the session.
+        /// Id of the visitor who established the session.
         /// </summary>
         [JsonProperty("uid")]
         public Guid Uid { get; set; }
@@ -98,13 +98,13 @@ namespace KenticoCloud.PersonalData.Models
         public Guid IpHash { get; set; }
 
         /// <summary>
-        /// User's actions done during the session.
+        /// Visitor's actions done during the session.
         /// </summary>
         [JsonProperty("actions")]
         public UserAction[] Actions { get; set; }
 
         /// <summary>
-        /// User's custom activities done during the session.
+        /// Visitor's custom activities done during the session.
         /// </summary>
         [JsonProperty("customActivities")]
         public CustomActivity[] CustomActivities { get; set; }

@@ -8,13 +8,13 @@ namespace KenticoCloud.PersonalData.Models
     public class ContactDataResponse
     {
         /// <summary>
-        /// Collection of data about a contact.
+        /// Collection of data about a visitor.
         /// </summary>
         [JsonProperty("contactData")]
         public ContactData[] ContactData { get; set; }
 
         /// <summary>
-        /// All ids which were used to track a contact.
+        /// All ids which were used to track a visitor.
         /// </summary>
         [JsonProperty("trackedIds")]
         public string[] TrackedIds { get; set; }

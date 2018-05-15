@@ -20,7 +20,7 @@ namespace KenticoCloud.PersonalData
 
 
         /// <summary>
-        /// Client constructor for production API.
+        /// Client constructor for the production API.
         /// </summary>
         /// <param name="accessToken">Your Personal Data API key. It can be found on Kentico Cloud API Keys page.</param>
         /// <param name="projectId">Your project identifier.</param>
@@ -48,7 +48,7 @@ namespace KenticoCloud.PersonalData
 
 
         /// <summary>
-        /// Gets all information about visitors (specified by <paramref name="uid"/>) stored in Kentico Cloud.
+        /// Gets all information about a visitor (specified by <paramref name="uid"/>) stored in Kentico Cloud.
         /// </summary>
         /// <param name="uid">User ID.</param>
         /// <throws><see cref="ArgumentException"/>If <paramref name="uid"/> is <c>null</c></throws>
@@ -67,7 +67,7 @@ namespace KenticoCloud.PersonalData
 
 
         /// <summary>
-        /// Gets all information about visitors (specified by <paramref name="email"/>) stored in Kentico Cloud.
+        /// Gets all information about a visitor (specified by <paramref name="email"/>) stored in Kentico Cloud.
         /// </summary>
         /// <param name="email">User email.</param>
         /// <throws><see cref="ArgumentException"/>If <paramref name="email"/> is <c>null</c></throws>
@@ -86,7 +86,7 @@ namespace KenticoCloud.PersonalData
 
 
         /// <summary>
-        /// Deletes all personal data stored in Kentico Cloud belonging to visitors with the specified <paramref name="uid"/>.
+        /// Deletes all personal data stored in Kentico Cloud belonging to a visitor with the specified <paramref name="uid"/>.
         /// </summary>
         /// <param name="uid">User ID.</param>
         /// <throws><see cref="ArgumentException"/>If <paramref name="uid"/> is <c>null</c></throws>
@@ -105,7 +105,7 @@ namespace KenticoCloud.PersonalData
 
 
         /// <summary>
-        /// Deletes all personal data stored in Kentico Cloud belonging to visitors with the specified <paramref name="email"/>.
+        /// Deletes all personal data stored in Kentico Cloud belonging to a visitor with the specified <paramref name="email"/>.
         /// </summary>
         /// <param name="email">User email.</param>
         /// <throws><see cref="ArgumentException"/>If <paramref name="email"/> is <c>null</c></throws>
