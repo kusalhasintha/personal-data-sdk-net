@@ -60,7 +60,7 @@ namespace KenticoCloud.PersonalData
             }
             using (var response = await _httpClient.GetAsync(GetUidRoute(uid)))
             {
-                return await GetSuccessfulResponseContent(response);
+                return await ExpectSuccessfulResponse(response);
             }
         }
 
@@ -79,7 +79,7 @@ namespace KenticoCloud.PersonalData
             }
             using (var response = await _httpClient.GetAsync(GetEmailRoute(email)))
             {
-                return await GetSuccessfulResponseContent(response);
+                return await ExpectSuccessfulResponse(response);
             }
         }
 
@@ -98,7 +98,7 @@ namespace KenticoCloud.PersonalData
             }
             using (var response = await _httpClient.DeleteAsync(GetUidRoute(uid)))
             {
-                await GetSuccessfulResponseContent(response);
+                await ExpectSuccessfulResponse(response);
             }
         }
 
@@ -117,7 +117,7 @@ namespace KenticoCloud.PersonalData
             }
             using (var response = await _httpClient.DeleteAsync(GetEmailRoute(email)))
             {
-                await GetSuccessfulResponseContent(response);
+                await ExpectSuccessfulResponse(response);
             }
         }
 
@@ -126,7 +126,7 @@ namespace KenticoCloud.PersonalData
         /// Retrieves body of <see cref="HttpResponseMessage"/>.
         /// </summary>
         /// <throws><see cref="PersonalDataException"/>If response is not successful.</throws>
-        private static async Task<string> GetSuccessfulResponseContent(HttpResponseMessage response)
+        private static async Task<string> ExpectSuccessfulResponse(HttpResponseMessage response)
         {
             var responseBody = await response.Content.ReadAsStringAsync();
 
