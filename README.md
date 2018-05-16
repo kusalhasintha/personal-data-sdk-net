@@ -33,6 +33,8 @@ client = new PersonalDataClient(apiKey, projectId);
 
 ### Retrieving personal data of tracked visitors
 
+All data about the specified visitor stored in Kentico Cloud is returned as a JSON string.
+
 #### Getting data by email address
 
 ```csharp
@@ -46,6 +48,8 @@ var response = await client.GetByUidAsync("1a7379c4026d4614");
 ```
 
 ### Deleting personal data of tracked visitors
+
+Calling a delete method registers a deletion request on our servers. All personal data of the specified visitor is then deleted within 24 hours.
 
 #### Deleting data by email address
 
