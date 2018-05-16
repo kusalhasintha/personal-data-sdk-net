@@ -16,7 +16,7 @@ To retrieve and delete data from Kentico Cloud via the [Personal Data API](https
 
 ### Getting User ID
 
-Some methods of the SDK work with User ID, which identifies a specific visitor on your website. You can get this value either by [parsing the content of a cookie](https://github.com/Kentico/personalization-sdk-net#getting-userid-and-sessionid) stored by the tracking code in the browser or by calling a JavaScript method in the code of your website. For more details, see [Identifying visitors on websites](https://developer.kenticocloud.com/docs/retrieving-user-and-session-id).
+Some methods of the SDK work with User ID, which identifies a specific visitor on your website. You can get this value either by parsing the content of a cookie using the [Personalization SDK](https://github.com/Kentico/personalization-sdk-net#getting-userid-and-sessionid) or by calling a JavaScript method in the code of your website. For more details, see [Identifying visitors on websites](https://developer.kenticocloud.com/docs/retrieving-user-and-session-id).
 
 ## Using the PersonalDataClient
 
@@ -28,7 +28,7 @@ To create an instance of the class, you need to provide a **Project ID** and you
 var projectId = new Guid("<YOUR_PROJECT_ID");
 var apiKey = "<YOUR_PERSONAL_DATA_API_KEY>";
 
-client = new PersonalDataClient("https://personal-data-api.kenticocloud.com/", apiKey, projectId);
+client = new PersonalDataClient(apiKey, projectId);
 ```
 
 ### Retrieving personal data of tracked visitors
@@ -42,7 +42,7 @@ var response = await client.GetByEmailAsync("kroberts2y@godaddy.com");
 #### Getting data by User ID
 
 ```csharp
-var response = await client.GetByUidAsync("aad50bb1223e4199");
+var response = await client.GetByUidAsync("1a7379c4026d4614");
 ```
 
 ### Deleting personal data of tracked visitors
@@ -56,7 +56,7 @@ client.DeleteByEmailAsync("kroberts2y@godaddy.com");
 #### Deleting data by User ID
 
 ```csharp
-client.DeleteByUidAsync("aad50bb1223e4199");
+client.DeleteByUidAsync("1a7379c4026d4614");
 ```
 
 ## Feedback & Contributing
