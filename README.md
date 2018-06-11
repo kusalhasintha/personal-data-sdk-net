@@ -1,10 +1,9 @@
 # Kentico Cloud Personal Data .NET SDK
 
 [![Build status](https://ci.appveyor.com/api/projects/status/as11gvayj6vm087l?svg=true)](https://ci.appveyor.com/project/kentico/personal-data-sdk-net)
-
 [![NuGet](https://img.shields.io/nuget/v/KenticoCloud.PersonalData.svg)](https://www.nuget.org/packages/KenticoCloud.PersonalData)
-
 [![Forums](https://img.shields.io/badge/chat-on%20forums-orange.svg)](https://forums.kenticocloud.com)
+[![Analytics](https://ga-beacon.appspot.com/UA-69014260-4/Kentico/personal-data-sdk-net?pixel)](https://github.com/igrigorik/ga-beacon)
 
 ## Summary
 
