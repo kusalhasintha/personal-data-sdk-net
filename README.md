@@ -32,7 +32,9 @@ client = new PersonalDataClient(apiKey, projectId);
 
 ### Retrieving personal data of tracked visitors
 
-All data about the specified visitor stored in Kentico Cloud is returned as a JSON string.
+Calling a get method returns all data about the specified visitor stored in Kentico Cloud. The [Response](https://github.com/Kentico/personal-data-sdk-net/blob/master/KenticoCloud.PersonalData/Response.cs) object contains: 
+* an HTTP status code
+* the content of the response OR [error details](https://github.com/Kentico/personal-data-sdk-net/blob/master/KenticoCloud.PersonalData/PersonalDataError.cs)
 
 #### Getting data by email address
 
@@ -48,18 +50,20 @@ var response = await client.GetByUidAsync("1a7379c4026d4614");
 
 ### Deleting personal data of tracked visitors
 
-Calling a delete method registers a deletion request on our servers. All personal data of the specified visitor is then deleted within 24 hours.
+Calling a delete method registers a deletion request on our servers. All personal data of the specified visitor is then deleted within 24 hours. The [Response](https://github.com/Kentico/personal-data-sdk-net/blob/master/KenticoCloud.PersonalData/Response.cs) object contains: 
+* an HTTP status code
+* [error details](https://github.com/Kentico/personal-data-sdk-net/blob/master/KenticoCloud.PersonalData/PersonalDataError.cs), in case of an error
 
 #### Deleting data by email address
 
 ```csharp
-client.DeleteByEmailAsync("kroberts2y@godaddy.com");
+var response = client.DeleteByEmailAsync("kroberts2y@godaddy.com");
 ```
 
 #### Deleting data by User ID
 
 ```csharp
-client.DeleteByUidAsync("1a7379c4026d4614");
+var response = client.DeleteByUidAsync("1a7379c4026d4614");
 ```
 
 ## Feedback & Contributing
