@@ -8,17 +8,12 @@ namespace KenticoCloud.PersonalData
     /// <summary>
     /// Represents an error response from the API.
     /// </summary>
-    public class PersonalDataException : Exception
+    public class PersonalDataError
     {
-        /// <summary>
-        /// HTTP status code.
-        /// </summary>
-        public HttpStatusCode StatusCode { get; }
-
         /// <summary>
         /// Detailed message from the API.
         /// </summary>
-        public override string Message { get; }
+        public string Message { get; }
 
         /// <summary>
         /// Description of error from the API.
@@ -40,9 +35,8 @@ namespace KenticoCloud.PersonalData
         /// </summary>
         /// <param name="statusCode">Status code of response.</param>
         /// <param name="message">Exception message.</param>
-        public PersonalDataException(HttpStatusCode statusCode, string message)
+        public PersonalDataError(string message)
         {
-            StatusCode = statusCode;
             try
             {
                 var errorMessage = JObject.Parse(message);
