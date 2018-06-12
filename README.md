@@ -17,7 +17,7 @@ To retrieve and delete data from Kentico Cloud via the [Personal Data API](https
 
 Some methods of the SDK work with User ID, which identifies a specific visitor on your website. You can get this value either by parsing the content of a cookie using the [Personalization SDK](https://github.com/Kentico/personalization-sdk-net#getting-userid-and-sessionid) or by calling a JavaScript method in the code of your website. For more details, see [Identifying visitors on websites](https://developer.kenticocloud.com/docs/retrieving-user-and-session-id).
 
-## Using the PersonalDataClient
+## Using the `PersonalDataClient`
 
 The `PersonalDataClient` class is the main class of the SDK. Using this class, you can retrieve and delete visitor data stored in your Kentico Cloud project.
 
