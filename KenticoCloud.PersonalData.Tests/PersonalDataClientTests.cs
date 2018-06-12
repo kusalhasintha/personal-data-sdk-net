@@ -33,7 +33,8 @@ namespace KenticoCloud.PersonalData.Tests
         public async Task GetByEmailAsync()
         {
             var response = await _client.GetByEmailAsync(EXISTING_EMAIL);
-            Assert.That(String.IsNullOrEmpty(response), Is.False);
+            Assert.That(String.IsNullOrEmpty(response.Content), Is.False);
+            Assert.IsNull(response.Error);
         }
 
 
@@ -41,26 +42,29 @@ namespace KenticoCloud.PersonalData.Tests
         public async Task GetByUidAsync()
         {
             var response = await _client.GetByUidAsync(EXISTING_UID);
-            Assert.That(String.IsNullOrEmpty(response), Is.False);
+            Assert.That(String.IsNullOrEmpty(response.Content), Is.False);
+            Assert.IsNull(response.Error);
         }
 
 
         [Test]
-        public void DeleteByUidAsync()
+        public async Task DeleteByUidAsync()
         {
             // Responses about the user creation might get to Engage after a delete signal. That's why we consider such request valid.
-            Assert.DoesNotThrowAsync(() => _client.DeleteByUidAsync(NONEXISTING_UID));
+            var response = await _client.DeleteByUidAsync(NONEXISTING_UID);
+            Assert.AreEqual(HttpStatusCode.Accepted, response.StatusCode);
+            Assert.IsNull(response.Error);
         }
 
 
         [Test]
-        public void DeleteByEmailAsync()
+        public async Task DeleteByEmailAsync()
         {
             // Email does not exists so we can't determine what users we should delete.
-            var exception = Assert.ThrowsAsync<PersonalDataException>(async () => await _client.DeleteByEmailAsync(NONEXISTING_EMAIL));
+            var response = await _client.DeleteByEmailAsync(NONEXISTING_EMAIL);
 
-            Assert.AreEqual(HttpStatusCode.NotFound, exception.StatusCode);
-            Assert.AreEqual("Requested email was not found", exception.Description);
+            Assert.AreEqual(HttpStatusCode.NotFound, response.StatusCode);
+            Assert.AreEqual("Requested email was not found", response.Error.Description);
         }
     }
 }

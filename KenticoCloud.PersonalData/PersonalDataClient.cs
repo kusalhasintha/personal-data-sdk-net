@@ -50,8 +50,7 @@ namespace KenticoCloud.PersonalData
         /// </summary>
         /// <param name="uid">User ID.</param>
         /// <throws><see cref="ArgumentException"/>If <paramref name="uid"/> is <c>null</c></throws>
-        /// <throws><see cref="PersonalDataException"/>If response is not succesfull.</throws>
-        public async Task<string> GetByUidAsync(string uid)
+        public async Task<Response<string>> GetByUidAsync(string uid)
         {
             if (string.IsNullOrEmpty(uid))
             {
@@ -59,7 +58,7 @@ namespace KenticoCloud.PersonalData
             }
             using (var response = await _httpClient.GetAsync(GetUidRoute(uid)))
             {
-                return await ExpectSuccessfulResponse(response);
+                return await GetResponse(response);
             }
         }
 
@@ -69,8 +68,7 @@ namespace KenticoCloud.PersonalData
         /// </summary>
         /// <param name="email">User email.</param>
         /// <throws><see cref="ArgumentException"/>If <paramref name="email"/> is <c>null</c></throws>
-        /// <throws><see cref="PersonalDataException"/>If response is not succesfull.</throws>
-        public async Task<string> GetByEmailAsync(string email)
+        public async Task<Response<string>> GetByEmailAsync(string email)
         {
             if (string.IsNullOrEmpty(email))
             {
@@ -78,7 +76,7 @@ namespace KenticoCloud.PersonalData
             }
             using (var response = await _httpClient.GetAsync(GetEmailRoute(email)))
             {
-                return await ExpectSuccessfulResponse(response);
+                return await GetResponse(response);
             }
         }
 
@@ -88,8 +86,7 @@ namespace KenticoCloud.PersonalData
         /// </summary>
         /// <param name="uid">User ID.</param>
         /// <throws><see cref="ArgumentException"/>If <paramref name="uid"/> is <c>null</c></throws>
-        /// <throws><see cref="PersonalDataException"/>If response is not successful.</throws>
-        public async Task DeleteByUidAsync(string uid)
+        public async Task<Response> DeleteByUidAsync(string uid)
         {
             if (string.IsNullOrEmpty(uid))
             {
@@ -97,7 +94,7 @@ namespace KenticoCloud.PersonalData
             }
             using (var response = await _httpClient.DeleteAsync(GetUidRoute(uid)))
             {
-                await ExpectSuccessfulResponse(response);
+                return await GetResponseWithoutContent(response);
             }
         }
 
@@ -107,8 +104,7 @@ namespace KenticoCloud.PersonalData
         /// </summary>
         /// <param name="email">User email.</param>
         /// <throws><see cref="ArgumentException"/>If <paramref name="email"/> is <c>null</c></throws>
-        /// <throws><see cref="PersonalDataException"/>If response is not successful.</throws>
-        public async Task DeleteByEmailAsync(string email)
+        public async Task<Response> DeleteByEmailAsync(string email)
         {
             if (string.IsNullOrEmpty(email))
             {
@@ -116,25 +112,47 @@ namespace KenticoCloud.PersonalData
             }
             using (var response = await _httpClient.DeleteAsync(GetEmailRoute(email)))
             {
-                await ExpectSuccessfulResponse(response);
+                return await GetResponseWithoutContent(response);
             }
         }
 
-
-        /// <summary>
-        /// Retrieves body of <see cref="HttpResponseMessage"/>.
-        /// </summary>
-        /// <throws><see cref="PersonalDataException"/>If response is not successful.</throws>
-        private static async Task<string> ExpectSuccessfulResponse(HttpResponseMessage response)
+        private static async Task<Response> GetResponseWithoutContent(HttpResponseMessage response)
         {
             var responseBody = await response.Content.ReadAsStringAsync();
 
             if (!response.IsSuccessStatusCode)
             {
-                throw new PersonalDataException(response.StatusCode, responseBody);
+                return new Response()
+                {
+                    StatusCode = response.StatusCode,
+                    Error = new PersonalDataError(responseBody),
+                };
             }
 
-            return responseBody;
+            return new Response()
+            {
+                StatusCode = response.StatusCode,
+            };
+        }
+
+        private static async Task<Response<string>> GetResponse(HttpResponseMessage response)
+        {
+            var responseBody = await response.Content.ReadAsStringAsync();
+
+            if (!response.IsSuccessStatusCode)
+            {
+                return new Response<string>()
+                {
+                    StatusCode = response.StatusCode,
+                    Error = new PersonalDataError(responseBody),
+                };
+            }
+
+            return new Response<string>()
+            {
+                StatusCode = response.StatusCode,
+                Content = responseBody,
+            };
         }
     }
 }
