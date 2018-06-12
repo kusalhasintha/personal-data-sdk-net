@@ -31,10 +31,9 @@ namespace KenticoCloud.PersonalData
         public string ErrorId { get; }
 
         /// <summary>
-        /// Initializes exception.
+        /// Initializes PersonalDataError.
         /// </summary>
-        /// <param name="statusCode">Status code of response.</param>
-        /// <param name="message">Exception message.</param>
+        /// <param name="message">Response message.</param>
         public PersonalDataError(string message)
         {
             try

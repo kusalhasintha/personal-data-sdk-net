@@ -21,7 +21,7 @@ namespace KenticoCloud.PersonalData
     public class Response
     {
         /// <summary>
-        /// Http status code of response.
+        /// Http status code of the response.
         /// </summary>
         public HttpStatusCode StatusCode { get; set; }
 

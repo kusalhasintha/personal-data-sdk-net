@@ -50,7 +50,6 @@ namespace KenticoCloud.PersonalData
         /// </summary>
         /// <param name="uid">User ID.</param>
         /// <throws><see cref="ArgumentException"/>If <paramref name="uid"/> is <c>null</c></throws>
-        /// <throws><see cref="PersonalDataError"/>If response is not succesfull.</throws>
         public async Task<Response<string>> GetByUidAsync(string uid)
         {
             if (string.IsNullOrEmpty(uid))
@@ -69,7 +68,6 @@ namespace KenticoCloud.PersonalData
         /// </summary>
         /// <param name="email">User email.</param>
         /// <throws><see cref="ArgumentException"/>If <paramref name="email"/> is <c>null</c></throws>
-        /// <throws><see cref="PersonalDataError"/>If response is not succesfull.</throws>
         public async Task<Response<string>> GetByEmailAsync(string email)
         {
             if (string.IsNullOrEmpty(email))
@@ -88,7 +86,6 @@ namespace KenticoCloud.PersonalData
         /// </summary>
         /// <param name="uid">User ID.</param>
         /// <throws><see cref="ArgumentException"/>If <paramref name="uid"/> is <c>null</c></throws>
-        /// <throws><see cref="PersonalDataError"/>If response is not successful.</throws>
         public async Task<Response> DeleteByUidAsync(string uid)
         {
             if (string.IsNullOrEmpty(uid))
@@ -107,7 +104,6 @@ namespace KenticoCloud.PersonalData
         /// </summary>
         /// <param name="email">User email.</param>
         /// <throws><see cref="ArgumentException"/>If <paramref name="email"/> is <c>null</c></throws>
-        /// <throws><see cref="PersonalDataError"/>If response is not successful.</throws>
         public async Task<Response> DeleteByEmailAsync(string email)
         {
             if (string.IsNullOrEmpty(email))
