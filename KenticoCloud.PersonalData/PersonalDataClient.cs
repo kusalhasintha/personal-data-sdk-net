@@ -94,7 +94,7 @@ namespace KenticoCloud.PersonalData
             }
             using (var response = await _httpClient.DeleteAsync(GetUidRoute(uid)))
             {
-                return await GetResponse(response);
+                return await GetResponseWithoutContent(response);
             }
         }
 
