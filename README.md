@@ -3,7 +3,6 @@
 [![Build status](https://ci.appveyor.com/api/projects/status/as11gvayj6vm087l?svg=true)](https://ci.appveyor.com/project/kentico/personal-data-sdk-net)
 [![NuGet](https://img.shields.io/nuget/v/KenticoCloud.PersonalData.svg)](https://www.nuget.org/packages/KenticoCloud.PersonalData)
 [![Forums](https://img.shields.io/badge/chat-on%20forums-orange.svg)](https://forums.kenticocloud.com)
-[![Analytics](https://ga-beacon.appspot.com/UA-69014260-4/Kentico/personal-data-sdk-net?pixel)](https://github.com/igrigorik/ga-beacon)
 
 ## Summary
 
@@ -68,3 +67,5 @@ var response = client.DeleteByUidAsync("1a7379c4026d4614");
 
 ## Feedback & Contributing
 Check out the [contributing](https://github.com/Kentico/personal-data-sdk-net/blob/master/CONTRIBUTING.md) page to see the best places to file issues, start discussions and begin contributing.
+
+![Analytics](https://kentico-ga-beacon.azurewebsites.net/api/UA-69014260-4/Kentico/personal-data-sdk-net?pixel)
