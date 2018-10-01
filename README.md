@@ -65,7 +65,7 @@ var response = client.DeleteByEmailAsync("kroberts2y@godaddy.com");
 var response = client.DeleteByUidAsync("1a7379c4026d4614");
 ```
 
-## Feedback & Contributing
+##Feedback & Contributing
 Check out the [contributing](https://github.com/Kentico/personal-data-sdk-net/blob/master/CONTRIBUTING.md) page to see the best places to file issues, start discussions and begin contributing.
 
 ![Analytics](https://kentico-ga-beacon.azurewebsites.net/api/UA-69014260-4/Kentico/personal-data-sdk-net?pixel)
