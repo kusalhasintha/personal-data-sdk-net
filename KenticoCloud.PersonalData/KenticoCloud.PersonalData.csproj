@@ -1,5 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
-
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <Description>Kentico Cloud Personal Data SDK enables you to connect your .NET applications to Kentico Cloud and use functionality provided by Personal Data API. For more information about Kentico Cloud, see https://kenticocloud.com/.</Description>
     <Copyright>(c) 2018 Kentico Software. All rights reserved.</Copyright>
@@ -7,7 +6,7 @@
     <NeutralLanguage>en-us</NeutralLanguage>
     <Authors>Kentico Software</Authors>
     <Title>Kentico Cloud Personal Data SDK</Title>
-    <TargetFrameworks>netstandard1.3;net451</TargetFrameworks>
+    <TargetFrameworks>net451;netstandard2.0</TargetFrameworks>
     <AssemblyName>KenticoCloud.PersonalData</AssemblyName>
     <PackageId>KenticoCloud.PersonalData</PackageId>
     <PackageTags>kentico</PackageTags>
@@ -26,13 +25,11 @@
     <GenerateAssemblyCopyrightAttribute>false</GenerateAssemblyCopyrightAttribute>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
-
   <ItemGroup Condition=" '$(TargetFramework)' == 'net451' ">
     <Reference Include="System.Net.Http" />
     <Reference Include="System" />
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
-
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
   </ItemGroup>
